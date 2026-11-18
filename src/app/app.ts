@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+
 import { ThemeToggle } from '@components/theme-toggle/theme-toggle';
 
 @Component({
