@@ -1,0 +1,40 @@
+:host {
+  display: inline-flex;
+}
+
+.icon-button {
+  display: inline-flex;
+  padding: 4px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.icon-button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.icon {
+  display: block;
+  flex: none;
+  background-color: currentColor;
+  mask-image: var(--icon-mask);
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+}
+
+@media (prefers-color-scheme: light) {
+  .icon {
+    mask-image: var(--light-icon-mask, var(--icon-mask));
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .icon {
+    mask-image: var(--dark-icon-mask, var(--icon-mask));
+  }
+}

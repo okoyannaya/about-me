@@ -1,0 +1,19 @@
+<button
+  type="button"
+  class="icon-button"
+  [attr.aria-label]="label()"
+  [attr.aria-pressed]="isPressed()"
+  [attr.title]="label()"
+  [style.color]="color()"
+  (click)="clicked.emit()"
+>
+  <span
+    class="icon"
+    aria-hidden="true"
+    [style.--icon-mask]="iconMask()"
+    [style.--light-icon-mask]="lightIconMask()"
+    [style.--dark-icon-mask]="darkIconMask()"
+    [style.width.px]="size()"
+    [style.height.px]="size()"
+  ></span>
+</button>

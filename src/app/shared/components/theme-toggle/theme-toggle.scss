@@ -1,27 +1,49 @@
 .theme-switcher {
-  display: inline-flex;
+  display: inline-grid;
+  grid-template-columns: repeat(3, max-content);
   gap: 4px;
   padding: 4px;
   border-radius: 8px;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
+  background: var(--background-10);
+  border: 1px solid var(--accent-10);
+
+  &::before {
+    content: '';
+    grid-area: 1 / 1;
+    border-radius: 4px;
+    background: var(--primary-30);
+    transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  app-icon {
+    position: relative;
+    z-index: 1;
+    grid-row: 1;
+  }
+
+  app-icon:nth-child(1) {
+    grid-column: 1;
+  }
+
+  app-icon:nth-child(2) {
+    grid-column: 2;
+  }
+
+  app-icon:nth-child(3) {
+    grid-column: 3;
+  }
+
+  &[data-mode='dark']::before {
+    transform: translateX(calc(100% + 4px));
+  }
+
+  &[data-mode='system']::before {
+    transform: translateX(calc(200% + 8px));
+  }
 }
 
-button {
-  cursor: pointer;
-  padding: 6px 12px;
-  border: none;
-  border-radius: 6px;
-  background: transparent;
-  color: var(--text-primary);
-  font-size: 14px;
-  transition:
-    background-color 0.5s,
-    color 0.5s;
-}
-
-button.active {
-  background: var(--bg-primary);
-  font-weight: 600;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+@media (prefers-reduced-motion: reduce) {
+  .theme-switcher::before {
+    transition: none;
+  }
 }
