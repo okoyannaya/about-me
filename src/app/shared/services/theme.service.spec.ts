@@ -1,7 +1,8 @@
-import { PLATFORM_ID, REQUEST, TransferState, makeStateKey } from '@angular/core';
+import { makeStateKey, PLATFORM_ID, REQUEST, TransferState } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { ThemeToggle } from '../components/theme-toggle/theme-toggle';
+
 import { ThemeMode, ThemeService } from './theme.service';
+import { ThemeToggle } from '../components/theme-toggle/theme-toggle';
 
 describe('ThemeService', () => {
   const themeModes = Object.values(ThemeMode);

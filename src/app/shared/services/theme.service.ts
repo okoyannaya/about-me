@@ -1,14 +1,14 @@
 import { isPlatformBrowser } from '@angular/common';
 import {
-  Injectable,
-  signal,
+  DOCUMENT,
   effect,
   inject,
-  DOCUMENT,
+  Injectable,
+  makeStateKey,
   PLATFORM_ID,
   REQUEST,
+  signal,
   TransferState,
-  makeStateKey,
 } from '@angular/core';
 
 export enum ThemeMode {

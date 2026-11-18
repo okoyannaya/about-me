@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+
 import { ThemeMode, ThemeService } from '@services/theme.service';
 
 @Component({
