@@ -1,0 +1,27 @@
+.theme-switcher {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 8px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+}
+
+button {
+  cursor: pointer;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 14px;
+  transition:
+    background-color 0.5s,
+    color 0.5s;
+}
+
+button.active {
+  background: var(--bg-primary);
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
