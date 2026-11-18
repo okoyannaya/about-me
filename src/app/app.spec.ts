@@ -15,10 +15,12 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('отображает заголовок приложения', async () => {
+  it('отображает переключатель темы', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, about-me');
+    expect(compiled.querySelector('[role="group"]')?.getAttribute('aria-label')).toBe(
+      'Выбор темы оформления',
+    );
   });
 });

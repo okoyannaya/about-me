@@ -20,7 +20,14 @@ export default defineConfig(
       'import/order': [
         'error',
         {
-          groups: ['builtin', 'external', 'internal', ['parent', 'sibling', 'index'], 'object', 'unknown'],
+          groups: [
+            'builtin',
+            'external',
+            'internal',
+            ['parent', 'sibling', 'index'],
+            'object',
+            'unknown',
+          ],
           pathGroups: [
             {
               pattern: '**/*.{css,scss,sass,less,svg,png,jpg,jpeg,gif,webp,avif,ico,woff,woff2}',
@@ -33,6 +40,7 @@ export default defineConfig(
             { pattern: '@layout/**', group: 'internal', position: 'before' },
             { pattern: '@components/**', group: 'internal', position: 'before' },
             { pattern: '@services/**', group: 'internal', position: 'before' },
+            { pattern: '@constants/**', group: 'internal', position: 'before' },
           ],
           pathGroupsExcludedImportTypes: ['builtin'],
           distinctGroup: true,

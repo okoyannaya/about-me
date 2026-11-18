@@ -33,8 +33,13 @@ describe('ThemeService', () => {
         expect(service.themeMode()).toBe(theme);
         const buttons = fixture.nativeElement.querySelectorAll('button');
         const selectedIndex = themeModes.indexOf(theme);
-        expect(buttons[selectedIndex].classList.contains('active')).toBe(true);
-        expect(fixture.nativeElement.querySelectorAll('button.active')).toHaveLength(1);
+        expect(buttons[selectedIndex].getAttribute('aria-pressed')).toBe('true');
+        expect(fixture.nativeElement.querySelectorAll('button[aria-pressed="true"]')).toHaveLength(
+          1,
+        );
+        expect(
+          fixture.nativeElement.querySelector('.theme-switcher').getAttribute('data-mode'),
+        ).toBe(theme);
 
         await fixture.whenStable();
         expect(service.themeMode()).toBe(theme);

@@ -1,10 +1,65 @@
 :root {
   color-scheme: light dark;
 
-  --bg-primary: light-dark(#ffffff, #111827);
-  --bg-secondary: light-dark(#f3f4f6, #1f2937);
-  --text-primary: light-dark(#111827, #f9fafb);
-  --border-color: light-dark(#d1d5db, #374151);
+  --text-0: light-dark(#fbeafb, #150415);
+  --text-10: light-dark(#f6d5f6, #2a092a);
+  --text-20: light-dark(#edabed, #541254);
+  --text-30: light-dark(#e481e4, #7e1b7e);
+  --text-40: light-dark(#db57db, #a824a8);
+  --text-50: light-dark(#d22dd2, #d22dd2);
+  --text-60: light-dark(#a824a8, #db57db);
+  --text-70: light-dark(#7e1b7e, #e481e4);
+  --text-80: light-dark(#541254, #edabed);
+  --text-90: light-dark(#2a092a, #f6d5f6);
+  --text-100: light-dark(#150415, #fbeafb);
+
+  --background-0: light-dark(#fce9f8, #160313);
+  --background-10: light-dark(#f8d3f1, #2c0725);
+  --background-20: light-dark(#f1a7e4, #580e4b);
+  --background-30: light-dark(#ea7bd6, #841570);
+  --background-40: light-dark(#e34fc8, #b01c95);
+  --background-50: light-dark(#dd22ba, #dd22ba);
+  --background-60: light-dark(#b01c95, #e34fc8);
+  --background-70: light-dark(#841570, #ea7bd6);
+  --background-80: light-dark(#580e4b, #f1a7e4);
+  --background-90: light-dark(#2c0725, #f8d3f1);
+  --background-100: light-dark(#160313, #fce9f8);
+
+  --primary-0: light-dark(#faeafa, #150514);
+  --primary-10: light-dark(#f6d5f4, #2a0928);
+  --primary-20: light-dark(#edabe9, #541250);
+  --primary-30: light-dark(#e382df, #7d1c79);
+  --primary-40: light-dark(#da58d4, #a725a1);
+  --primary-50: light-dark(#d12ec9, #d12ec9);
+  --primary-60: light-dark(#a725a1, #da58d4);
+  --primary-70: light-dark(#7d1c79, #e382df);
+  --primary-80: light-dark(#541250, #edabe9);
+  --primary-90: light-dark(#2a0928, #f6d5f4);
+  --primary-100: light-dark(#150514, #faeafa);
+
+  --secondary-0: light-dark(#faf0ea, #150a05);
+  --secondary-10: light-dark(#f6e0d5, #2a1409);
+  --secondary-20: light-dark(#edc1ab, #542812);
+  --secondary-30: light-dark(#e3a282, #7d3c1c);
+  --secondary-40: light-dark(#da8358, #a75025);
+  --secondary-50: light-dark(#d1642e, #d1642e);
+  --secondary-60: light-dark(#a75025, #da8358);
+  --secondary-70: light-dark(#7d3c1c, #e3a282);
+  --secondary-80: light-dark(#542812, #edc1ab);
+  --secondary-90: light-dark(#2a1409, #f6e0d5);
+  --secondary-100: light-dark(#150a05, #faf0ea);
+
+  --accent-0: light-dark(#faf7ea, #151105);
+  --accent-10: light-dark(#f6eed5, #2a2209);
+  --accent-20: light-dark(#ecddac, #534413);
+  --accent-30: light-dark(#e3cc82, #7d661c);
+  --accent-40: light-dark(#d9bb59, #a68826);
+  --accent-50: light-dark(#d0aa2f, #d0aa2f);
+  --accent-60: light-dark(#a68826, #d9bb59);
+  --accent-70: light-dark(#7d661c, #e3cc82);
+  --accent-80: light-dark(#534413, #ecddac);
+  --accent-90: light-dark(#2a2209, #f6eed5);
+  --accent-100: light-dark(#151105, #faf7ea);
 }
 
 [data-theme='light'] {
@@ -17,7 +72,7 @@
 
 body {
   margin: 0;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+  background-color: var(--background-0);
+  color: var(--text-100);
   transition: background-color 0.2s ease, color 0.2s ease;
 }

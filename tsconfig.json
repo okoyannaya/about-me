@@ -15,6 +15,7 @@
     "paths": {
       "@services/*": ["./src/app/shared/services/*"],
       "@components/*": ["./src/app/shared/components/*"],
+      "@icons/*": ["./src/app/shared/icons/*"],
       "@layout/*": ["./src/app/layout/*"],
       "@features/*": ["./src/app/features/*"]
     }
