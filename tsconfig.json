@@ -13,11 +13,11 @@
     "target": "ES2022",
     "module": "preserve",
     "paths": {
-      "@services/*": ["./src/app/shared/services/*"],
-      "@components/*": ["./src/app/shared/components/*"],
-      "@icons/*": ["./src/app/shared/icons/*"],
+      "@features/*": ["./src/app/features/*"],
       "@layout/*": ["./src/app/layout/*"],
-      "@features/*": ["./src/app/features/*"]
+      "@components/*": ["./src/app/shared/components/*"],
+      "@services/*": ["./src/app/shared/services/*"],
+      "@icons/*": ["./src/app/shared/icons/*"]
     }
   },
   "angularCompilerOptions": {

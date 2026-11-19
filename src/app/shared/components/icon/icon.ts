@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 
-import { createIconUrl, type ICONS } from '@icons/index';
-
+import { createIconUrl } from '@icons/index';
+import type { IconName } from '@icons/index';
 
 @Component({
   selector: 'app-icon',
@@ -10,9 +10,9 @@ import { createIconUrl, type ICONS } from '@icons/index';
   styleUrl: './icon.scss',
 })
 export class Icon {
-  readonly icon = input.required<ICONS>();
-  readonly lightIcon = input<ICONS>();
-  readonly darkIcon = input<ICONS>();
+  readonly icon = input.required<IconName>();
+  readonly lightIcon = input<IconName>();
+  readonly darkIcon = input<IconName>();
   readonly label = input.required<string>();
   readonly size = input(24);
   readonly color = input<string>();

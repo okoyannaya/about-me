@@ -74,5 +74,7 @@ body {
   margin: 0;
   background-color: var(--background-0);
   color: var(--text-100);
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }

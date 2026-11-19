@@ -23,48 +23,49 @@ const THEME_MODE_KEY = makeStateKey<ThemeMode>('theme-mode');
   providedIn: 'root',
 })
 export class ThemeService {
-  private readonly document = inject(DOCUMENT);
-  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
-  private readonly request = inject(REQUEST, { optional: true });
-  private readonly transferState = inject(TransferState);
-  private readonly storageKey = 'currentTheme';
+  private readonly _document = inject(DOCUMENT);
+  private readonly _isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  private readonly _request = inject(REQUEST, { optional: true });
+  private readonly _transferState = inject(TransferState);
+  private readonly _storageKey = 'currentTheme';
+  private readonly _themeMode = signal<ThemeMode>(this.readInitialTheme());
 
-  readonly themeMode = signal<ThemeMode>(this.readInitialTheme());
+  readonly themeMode = this._themeMode.asReadonly();
 
   constructor() {
     effect(() => {
-      this.document.documentElement.setAttribute('data-theme', this.themeMode());
+      this._document.documentElement.setAttribute('data-theme', this.themeMode());
     });
   }
 
   setTheme(mode: ThemeMode): void {
-    this.themeMode.set(mode);
+    this._themeMode.set(mode);
 
-    if (this.isBrowser) {
-      const secure = this.document.location.protocol === 'https:' ? '; Secure' : '';
-      this.document.cookie = `${this.storageKey}=${mode}; Path=/; Max-Age=34560000; SameSite=Lax${secure}`;
+    if (this._isBrowser) {
+      const secure = this._document.location.protocol === 'https:' ? '; Secure' : '';
+      this._document.cookie = `${this._storageKey}=${mode}; Path=/; Max-Age=34560000; SameSite=Lax${secure}`;
     }
   }
 
   private readInitialTheme(): ThemeMode {
-    if (this.isBrowser && this.transferState.hasKey(THEME_MODE_KEY)) {
-      const mode = this.transferState.get(THEME_MODE_KEY, ThemeMode.System);
-      this.transferState.remove(THEME_MODE_KEY);
+    if (this._isBrowser && this._transferState.hasKey(THEME_MODE_KEY)) {
+      const mode = this._transferState.get(THEME_MODE_KEY, ThemeMode.System);
+      this._transferState.remove(THEME_MODE_KEY);
       return mode;
     }
 
-    const cookies = this.isBrowser
-      ? this.document.cookie
-      : (this.request?.headers.get('cookie') ?? '');
+    const cookies = this._isBrowser
+      ? this._document.cookie
+      : (this._request?.headers.get('cookie') ?? '');
     const saved = cookies
       .split(';')
       .map((cookie) => cookie.trim())
-      .find((cookie) => cookie.startsWith(`${this.storageKey}=`))
-      ?.slice(this.storageKey.length + 1);
+      .find((cookie) => cookie.startsWith(`${this._storageKey}=`))
+      ?.slice(this._storageKey.length + 1);
     const mode = saved === ThemeMode.Light || saved === ThemeMode.Dark ? saved : ThemeMode.System;
 
-    if (!this.isBrowser) {
-      this.transferState.set(THEME_MODE_KEY, mode);
+    if (!this._isBrowser) {
+      this._transferState.set(THEME_MODE_KEY, mode);
     }
 
     return mode;

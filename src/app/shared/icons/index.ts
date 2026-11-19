@@ -1,9 +1,9 @@
-export enum ICONS {
-  MOON = 'moon',
-  SUN = 'sun',
-  SYSTEM_DARK = 'system-dark',
-  SYSTEM_LIGHT = 'system-light',
-  SYSTEM = 'system',
+export enum IconName {
+  Moon = 'moon',
+  Sun = 'sun',
+  System = 'system',
+  SystemDark = 'system-dark',
+  SystemLight = 'system-light',
 }
 
-export const createIconUrl = (icon: ICONS): string => `url("icons/${icon}.svg")`;
+export const createIconUrl = (icon: IconName) => `url("icons/${icon}.svg")`;
