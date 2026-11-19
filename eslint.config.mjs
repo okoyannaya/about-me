@@ -40,7 +40,7 @@ export default defineConfig(
             { pattern: '@layout/**', group: 'internal', position: 'before' },
             { pattern: '@components/**', group: 'internal', position: 'before' },
             { pattern: '@services/**', group: 'internal', position: 'before' },
-            { pattern: '@constants/**', group: 'internal', position: 'before' },
+            { pattern: '@icons/**', group: 'internal', position: 'before' },
           ],
           pathGroupsExcludedImportTypes: ['builtin'],
           distinctGroup: true,
@@ -80,6 +80,17 @@ export default defineConfig(
       '@typescript-eslint/consistent-type-imports': [
         'error',
         { prefer: 'type-imports', fixStyle: 'separate-type-imports' },
+      ],
+      '@typescript-eslint/naming-convention': [
+        'error',
+        { selector: 'enum', format: ['PascalCase'] },
+        { selector: 'enumMember', format: ['PascalCase'] },
+        {
+          selector: 'property',
+          modifiers: ['private'],
+          format: ['camelCase'],
+          leadingUnderscore: 'require',
+        },
       ],
       '@angular-eslint/component-selector': [
         'error',

@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ICONS } from '@icons/index';
-
 import { ThemeMode, ThemeService } from '@services/theme.service';
+
+import { IconName } from '@icons/index';
 
 import { ThemeToggle } from './theme-toggle';
 describe('ThemeToggle', () => {
@@ -28,7 +28,7 @@ describe('ThemeToggle', () => {
     );
 
     expect(icons).toEqual(
-      [ICONS.SUN, ICONS.MOON, ICONS.SYSTEM].map((icon) => `url("icons/${icon}.svg")`),
+      [IconName.Sun, IconName.Moon, IconName.System].map((icon) => `url("icons/${icon}.svg")`),
     );
     const systemIcon = buttons[2].querySelector('.icon') as HTMLElement;
     expect(systemIcon.style.getPropertyValue('--light-icon-mask')).toContain(

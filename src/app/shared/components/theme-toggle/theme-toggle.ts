@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
-import { ICONS } from '@icons/index';
-
 import { Icon } from '@components/icon/icon';
 
 import { ThemeMode, ThemeService } from '@services/theme.service';
+
+import { IconName } from '@icons/index';
 
 @Component({
   selector: 'app-theme-toggle',
@@ -19,18 +19,18 @@ export class ThemeToggle {
   protected readonly options: {
     value: ThemeMode;
     label: string;
-    icon: ICONS;
-    lightIcon?: ICONS;
-    darkIcon?: ICONS;
+    icon: IconName;
+    lightIcon?: IconName;
+    darkIcon?: IconName;
   }[] = [
-    { value: ThemeMode.Light, label: 'Светлая тема', icon: ICONS.SUN },
-    { value: ThemeMode.Dark, label: 'Тёмная тема', icon: ICONS.MOON },
+    { value: ThemeMode.Light, label: 'Светлая тема', icon: IconName.Sun },
+    { value: ThemeMode.Dark, label: 'Тёмная тема', icon: IconName.Moon },
     {
       value: ThemeMode.System,
       label: 'Системная тема',
-      icon: ICONS.SYSTEM,
-      lightIcon: ICONS.SYSTEM_LIGHT,
-      darkIcon: ICONS.SYSTEM_DARK,
+      icon: IconName.System,
+      lightIcon: IconName.SystemLight,
+      darkIcon: IconName.SystemDark,
     },
   ];
 }

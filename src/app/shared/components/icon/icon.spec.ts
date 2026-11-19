@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ICONS } from '@icons/index';
+import { IconName } from '@icons/index';
 
 import { Icon } from './icon';
 
@@ -9,7 +9,7 @@ describe('Icon', () => {
     await TestBed.configureTestingModule({ imports: [Icon] }).compileComponents();
   });
 
-  it.each(Object.values(ICONS))('показывает иконку %s по имени', (icon) => {
+  it.each(Object.values(IconName))('показывает иконку %s по имени', (icon) => {
     const fixture = TestBed.createComponent(Icon);
     fixture.componentRef.setInput('icon', icon);
     fixture.componentRef.setInput('label', 'Название иконки');
@@ -21,9 +21,9 @@ describe('Icon', () => {
 
   it('задаёт варианты иконки для системной светлой и тёмной схемы', () => {
     const fixture = TestBed.createComponent(Icon);
-    fixture.componentRef.setInput('icon', ICONS.SYSTEM);
-    fixture.componentRef.setInput('lightIcon', ICONS.SYSTEM_LIGHT);
-    fixture.componentRef.setInput('darkIcon', ICONS.SYSTEM_DARK);
+    fixture.componentRef.setInput('icon', IconName.System);
+    fixture.componentRef.setInput('lightIcon', IconName.SystemLight);
+    fixture.componentRef.setInput('darkIcon', IconName.SystemDark);
     fixture.componentRef.setInput('label', 'Системная тема');
     fixture.detectChanges();
 
@@ -35,7 +35,7 @@ describe('Icon', () => {
 
   it('применяет размер, цвет и доступную подпись', () => {
     const fixture = TestBed.createComponent(Icon);
-    fixture.componentRef.setInput('icon', ICONS.SUN);
+    fixture.componentRef.setInput('icon', IconName.Sun);
     fixture.componentRef.setInput('label', 'Светлая тема');
     fixture.componentRef.setInput('size', 32);
     fixture.componentRef.setInput('color', '#ff0000');
@@ -53,7 +53,7 @@ describe('Icon', () => {
 
   it('вызывает обработчик родителя при клике', () => {
     const fixture = TestBed.createComponent(Icon);
-    fixture.componentRef.setInput('icon', ICONS.MOON);
+    fixture.componentRef.setInput('icon', IconName.Moon);
     fixture.componentRef.setInput('label', 'Тёмная тема');
     fixture.detectChanges();
 
@@ -67,7 +67,7 @@ describe('Icon', () => {
 
   it('отмечает нажатую иконку для вспомогательных технологий', () => {
     const fixture = TestBed.createComponent(Icon);
-    fixture.componentRef.setInput('icon', ICONS.SYSTEM);
+    fixture.componentRef.setInput('icon', IconName.System);
     fixture.componentRef.setInput('label', 'Системная тема');
     fixture.componentRef.setInput('isPressed', true);
     fixture.detectChanges();
