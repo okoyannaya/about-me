@@ -105,6 +105,9 @@ export default defineConfig(
   {
     files: ['**/*.html'],
     extends: [angular.configs.templateRecommended, angular.configs.templateAccessibility],
+    rules: {
+      '@angular-eslint/template/prefer-self-closing-tags': 'error',
+    },
   },
   prettier,
 );

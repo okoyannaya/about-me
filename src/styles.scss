@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Tuffy:wght@400;700&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   color-scheme: light dark;
 
@@ -70,6 +76,10 @@
   color-scheme: dark;
 }
 
+[data-navigation-section] {
+  scroll-margin-top: 80px;
+}
+
 body {
   margin: 0;
   background-color: var(--background-0);
@@ -77,4 +87,26 @@ body {
   transition:
     background-color 0.2s ease,
     color 0.2s ease;
+}
+
+.main {
+  padding-top: 80px;
+}
+
+.tuffy-regular-font {
+  font-family: 'Tuffy', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.tuffy-bold-font {
+  font-family: 'Tuffy', sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.bad-script-font {
+  font-family: 'Bad Script', cursive;
+  font-weight: 400;
+  font-style: normal;
 }
