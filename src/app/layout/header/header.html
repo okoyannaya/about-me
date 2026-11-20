@@ -1,0 +1,22 @@
+<nav class="tuffy-bold-font">
+  @for (option of options; track option.label) {
+    @if (option.fragment; as fragment) {
+      <a
+        [attr.href]="'#' + fragment"
+        [class.active]="isActive(option)"
+        (click)="scrollToSection($event, fragment)"
+      >
+        {{ option.label }}
+      </a>
+    } @else {
+      <a
+        [routerLink]="option.path"
+        [class.active]="isActive(option)"
+      >
+        {{ option.label }}
+      </a>
+    }
+  }
+</nav>
+
+<app-theme-toggle />
