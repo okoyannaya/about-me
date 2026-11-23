@@ -23,3 +23,8 @@ a {
     color: var(--primary-50);
   }
 }
+
+.controls{
+  display: flex;
+  gap: 15px;
+}

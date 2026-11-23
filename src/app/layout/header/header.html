@@ -1,5 +1,5 @@
 <nav class="tuffy-bold-font">
-  @for (option of options; track option.label) {
+  @for (option of options(); track option.fragment ?? option.path) {
     @if (option.fragment; as fragment) {
       <a
         [attr.href]="'#' + fragment"
@@ -9,14 +9,13 @@
         {{ option.label }}
       </a>
     } @else {
-      <a
-        [routerLink]="option.path"
-        [class.active]="isActive(option)"
-      >
+      <a [routerLink]="option.path" [class.active]="isActive(option)">
         {{ option.label }}
       </a>
     }
   }
 </nav>
-
-<app-theme-toggle />
+<div class="controls">
+  <app-theme-toggle />
+  <app-language-toggle />
+</div>

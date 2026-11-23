@@ -41,6 +41,7 @@ export default defineConfig(
             { pattern: '@components/**', group: 'internal', position: 'before' },
             { pattern: '@services/**', group: 'internal', position: 'before' },
             { pattern: '@icons/**', group: 'internal', position: 'before' },
+            { pattern: '@translations/**', group: 'internal', position: 'before' },
           ],
           pathGroupsExcludedImportTypes: ['builtin'],
           distinctGroup: true,

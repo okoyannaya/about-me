@@ -2,6 +2,7 @@ import {
   afterNextRender,
   ChangeDetectionStrategy,
   Component,
+  computed,
   DestroyRef,
   DOCUMENT,
   inject,
@@ -9,7 +10,10 @@ import {
 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 
+import { LanguageToggle } from '@components/language-toggle/language-toggle';
 import { ThemeToggle } from '@components/theme-toggle/theme-toggle';
+
+import { TranslationService } from '@services/translation.service';
 
 interface NavigationOption {
   path: string;
@@ -19,7 +23,7 @@ interface NavigationOption {
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, ThemeToggle],
+  imports: [RouterLink, ThemeToggle, LanguageToggle],
   templateUrl: './header.html',
   styleUrl: './header.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,16 +32,21 @@ export class Header {
   private readonly _destroyRef = inject(DestroyRef);
   private readonly _document = inject(DOCUMENT);
   private readonly _router = inject(Router);
+  private readonly _translationService = inject(TranslationService);
 
   private readonly _activeSection = signal('about');
 
-  protected readonly options: NavigationOption[] = [
-    { path: '/', fragment: 'about', label: 'About' },
-    { path: '/', fragment: 'technologies', label: 'Technologies' },
-    { path: '/', fragment: 'work', label: 'Work' },
-    { path: '/portfolio', label: 'Portfolio' },
-    { path: '/', fragment: 'contact', label: 'Contact' },
-  ];
+  protected readonly options = computed<NavigationOption[]>(() => {
+    const t = this._translationService.translations().navigation;
+
+    return [
+      { path: '/', fragment: 'about', label: t.about },
+      { path: '/', fragment: 'technologies', label: t.technologies },
+      { path: '/', fragment: 'work', label: t.work },
+      { path: '/portfolio', label: t.portfolio },
+      { path: '/', fragment: 'contact', label: t.contact },
+    ];
+  });
 
   public constructor() {
     afterNextRender(() => {

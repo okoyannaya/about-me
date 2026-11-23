@@ -1,0 +1,10 @@
+@for (option of options; track option) {
+  <button
+    type="button"
+    (click)="translationService.setLanguage(option)"
+    [attr.aria-pressed]="translationService.language() === option"
+    [class.active]="translationService.language() === option"
+  >
+    {{ option | uppercase }}
+  </button>
+}

@@ -2,6 +2,9 @@
   "printWidth": 100,
   "singleQuote": true,
   "objectWrap": "preserve",
+  "plugins": ["prettier-plugin-css-order"],
+  "cssDeclarationSorterOrder": "smacss",
+  "cssDeclarationSorterKeepOverrides": true,
   "overrides": [
     {
       "files": "*.html",
