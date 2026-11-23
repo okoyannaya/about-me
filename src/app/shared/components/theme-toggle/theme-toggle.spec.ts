@@ -64,8 +64,6 @@ describe('ThemeToggle', () => {
     expect(document.cookie).toContain(`currentTheme=${ThemeMode.Dark}`);
     expect(buttons[1].getAttribute('aria-pressed')).toBe('true');
     expect(buttons[2].getAttribute('aria-pressed')).toBe('false');
-    expect(fixture.nativeElement.querySelector('.theme-switcher').getAttribute('data-mode')).toBe(
-      ThemeMode.Dark,
-    );
+    expect(fixture.nativeElement.getAttribute('data-mode')).toBe(ThemeMode.Dark);
   });
 });

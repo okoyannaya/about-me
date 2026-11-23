@@ -62,6 +62,7 @@ src/
         index.ts                    # Имена SVG-иконок и построение CSS URL
         *.svg                       # Исходные SVG-иконки
       services/
+        tests/theme.service.spec.ts # Существующие тесты темы
         theme.service.ts            # Тема, cookie, состояние SSR/браузера
         translation.service.ts      # Переводы, cookie и TransferState
         tests/translation.service.spec.ts # Проверки сервиса и структуры словарей

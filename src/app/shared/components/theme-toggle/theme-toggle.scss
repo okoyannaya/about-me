@@ -1,24 +1,27 @@
-.theme-switcher {
+:host {
   display: inline-grid;
   grid-template-columns: repeat(3, max-content);
-  gap: 4px;
   padding: 4px;
+  gap: 4px;
+  border: 1px solid var(--accent-10);
   border-radius: 8px;
   background: var(--background-10);
-  border: 1px solid var(--accent-10);
 
   &::before {
-    content: '';
     grid-area: 1 / 1;
     border-radius: 4px;
     background: var(--primary-30);
+    content: '';
     transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   app-icon {
-    position: relative;
     z-index: 1;
+    position: relative;
     grid-row: 1;
+    &:hover{
+      background-color: var(--primary-20);
+    }
   }
 
   app-icon:nth-child(1) {
@@ -32,18 +35,17 @@
   app-icon:nth-child(3) {
     grid-column: 3;
   }
+}
 
-  &[data-mode='dark']::before {
-    transform: translateX(calc(100% + 4px));
-  }
-
-  &[data-mode='system']::before {
-    transform: translateX(calc(200% + 8px));
-  }
+:host([data-mode='dark'])::before {
+  transform: translateX(calc(100% + 4px));
+}
+:host([data-mode='system'])::before {
+  transform: translateX(calc(200% + 8px));
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .theme-switcher::before {
+  :host::before {
     transition: none;
   }
 }

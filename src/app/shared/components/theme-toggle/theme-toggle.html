@@ -1,17 +1,10 @@
-<div
-  class="theme-switcher"
-  role="group"
-  aria-label="Выбор темы оформления"
-  [attr.data-mode]="themeService.themeMode()"
->
-  @for (option of options; track option.value) {
-    <app-icon
-      [icon]="option.icon"
-      [lightIcon]="option.lightIcon"
-      [darkIcon]="option.darkIcon"
-      [label]="option.label"
-      [isPressed]="themeService.themeMode() === option.value"
-      (clicked)="themeService.setTheme(option.value)"
-    />
-  }
-</div>
+@for (option of options; track option.value) {
+  <app-icon
+    [icon]="option.icon"
+    [lightIcon]="option.lightIcon"
+    [darkIcon]="option.darkIcon"
+    [label]="option.label"
+    [isPressed]="themeService.themeMode() === option.value"
+    (clicked)="themeService.setTheme(option.value)"
+  />
+}

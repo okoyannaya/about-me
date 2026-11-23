@@ -1,8 +1,9 @@
 import { makeStateKey, PLATFORM_ID, REQUEST, TransferState } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
-import { ThemeMode, ThemeService } from './theme.service';
-import { ThemeToggle } from '../components/theme-toggle/theme-toggle';
+import { ThemeToggle } from '@components/theme-toggle/theme-toggle';
+
+import { ThemeMode, ThemeService } from '../theme.service';
 
 describe('ThemeService', () => {
   const themeModes = Object.values(ThemeMode);
@@ -37,9 +38,7 @@ describe('ThemeService', () => {
         expect(fixture.nativeElement.querySelectorAll('button[aria-pressed="true"]')).toHaveLength(
           1,
         );
-        expect(
-          fixture.nativeElement.querySelector('.theme-switcher').getAttribute('data-mode'),
-        ).toBe(theme);
+        expect(fixture.nativeElement.getAttribute('data-mode')).toBe(theme);
 
         await fixture.whenStable();
         expect(service.themeMode()).toBe(theme);

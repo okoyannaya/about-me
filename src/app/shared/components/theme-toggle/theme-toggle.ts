@@ -12,6 +12,11 @@ import { IconName } from '@icons/index';
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './theme-toggle.html',
   styleUrl: './theme-toggle.scss',
+  host: {
+    role: 'group',
+    'aria-label': 'Выбор темы оформления',
+    '[attr.data-mode]': 'themeService.themeMode()',
+  },
 })
 export class ThemeToggle {
   protected readonly themeService = inject(ThemeService);
