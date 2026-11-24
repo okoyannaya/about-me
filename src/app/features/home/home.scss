@@ -1,0 +1,50 @@
+@use 'breakpoints' as *;
+
+:host {
+  display: block;
+}
+
+.home-section {
+  box-sizing: border-box;
+  display: grid;
+  align-items: center;
+  min-height: 100svh;
+  padding: clamp(32px, 8vw, 120px);
+  border-bottom: 1px solid var(--primary-30);
+
+  &:nth-of-type(even) {
+    background-color: var(--background-10);
+  }
+}
+
+.home-section--about {
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 1fr);
+  gap: clamp(24px, 5vw, 80px);
+}
+
+.home-section__content {
+  max-width: 760px;
+}
+
+.home-section__label {
+  color: var(--primary-50);
+  letter-spacing: 0.16em;
+}
+
+h1,
+h2 {
+  margin-block: 16px;
+  font-size: clamp(2rem, 6vw, 5rem);
+  line-height: 1;
+}
+
+p {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  line-height: 1.7;
+}
+
+@include breakpoint(tablet) {
+  .home-section--about {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

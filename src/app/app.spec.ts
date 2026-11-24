@@ -25,4 +25,12 @@ describe('App', () => {
       'Выбор темы оформления',
     );
   });
+
+  it('отображает посимвольный цилиндр под основным', async () => {
+    const fixture = TestBed.createComponent(App);
+    await fixture.whenStable();
+    const compiled = fixture.nativeElement as HTMLElement;
+
+    expect(compiled.querySelector('app-character-cylinder')).toBeTruthy();
+  });
 });

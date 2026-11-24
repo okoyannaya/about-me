@@ -1,0 +1,60 @@
+:host {
+  display: block;
+  overflow: hidden;
+}
+
+.character-cylinder {
+  --cylinder-radius: clamp(170px, 24vw, 300px);
+
+  display: grid;
+  place-items: center;
+  min-height: clamp(360px, 55vh, 560px);
+  perspective: 900px;
+}
+
+.character-cylinder__ring {
+  position: relative;
+  width: 1ch;
+  height: clamp(2rem, 5vw, 4rem);
+  transform-style: preserve-3d;
+  animation: rotate-character-cylinder 18s linear infinite reverse;
+}
+
+.character-cylinder__character {
+  position: absolute;
+  width: 1ch;
+  inset: 0;
+  transform: rotateY(calc(360deg / var(--character-count) * var(--character-index)))
+    translateZ(var(--cylinder-radius));
+  backface-visibility: visible;
+  color: var(--text-100);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1;
+  text-align: center;
+}
+
+@keyframes rotate-character-cylinder {
+  from {
+    transform: rotateX(-9deg) rotateZ(-2deg) rotateY(0deg);
+  }
+
+  to {
+    transform: rotateX(-9deg) rotateZ(-2deg) rotateY(360deg);
+  }
+}
+
+@media (width <= 600px) {
+  .character-cylinder {
+    --cylinder-radius: 190px;
+
+    min-height: 400px;
+    perspective: 800px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .character-cylinder__ring {
+    animation-play-state: paused;
+  }
+}

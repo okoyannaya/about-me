@@ -1,0 +1,9 @@
+<div class="character-cylinder no-select" aria-hidden="true">
+  <div class="character-cylinder__ring" [style.--character-count]="characters.length">
+    @for (character of characters; track $index; let index = $index) {
+      <span class="character-cylinder__character" [style.--character-index]="index">
+        {{ character }}
+      </span>
+    }
+  </div>
+</div>
