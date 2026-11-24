@@ -1,18 +1,15 @@
 <nav>
   @for (option of options(); track option.fragment ?? option.path) {
-    @if (option.fragment; as fragment) {
-      <a
-        [attr.href]="'#' + fragment"
-        [class.active]="isActive(option)"
-        (click)="scrollToSection($event, fragment)"
-      >
-        {{ option.label | uppercase }}
-      </a>
-    } @else {
-      <a [routerLink]="option.path" [class.active]="isActive(option)">
-        {{ option.label | uppercase }}
-      </a>
-    }
+    <a
+      [routerLink]="option.path"
+      [fragment]="option.fragment"
+      [class.active]="option.isActive"
+      [attr.aria-current]="option.isActive ? (option.fragment ? 'location' : 'page') : null"
+    >
+      <span>[</span>
+      {{ option.label | uppercase }}
+      <span>]</span>
+    </a>
   }
 </nav>
 <div class="controls">
