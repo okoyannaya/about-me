@@ -1,59 +1,49 @@
-# AboutMe
+# about-me
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.30.
+`about-me` — персональный сайт-резюме.
 
-## Development server
+Сейчас реализованы Angular-оболочка с SSR и гидратацией, светлая, тёмная и системная темы, сервис переводов RU / EN и вращающийся текстовый 3D-цилиндр. Выбор темы и языка хранится в cookie; начальные значения передаются с сервера через `TransferState`.
 
-To start a local development server, run:
+## Технологический стек
 
-```bash
-ng serve
+- **Фреймворк:** Angular 21, standalone-компоненты, Router, signals, Angular CLI и `@angular/build`.
+- **Язык:** TypeScript 5.9 со строгой типизацией и `strictTemplates`.
+- **Стили:** SCSS, локальные стили компонентов и общие CSS-переменные.
+- **SSR:** `@angular/ssr`, Express 5 и клиентская гидратация.
+- **Тесты:** Vitest 4 и jsdom через Angular CLI.
+- **Качество кода:** ESLint, Angular ESLint, typescript-eslint и Prettier.
+- **UI:** внешняя библиотека не используется.
+- **Пакетный менеджер:** npm.
+
+## Основные команды
+
+| Команда                     | Назначение                 |
+| --------------------------- | -------------------------- |
+| `npm start`                 | Запустить dev-сервер       |
+| `npm run build`             | Собрать приложение и SSR   |
+| `npm test -- --watch=false` | Однократно запустить тесты |
+| `npm run typecheck`         | Проверить TypeScript       |
+| `npm run lint`              | Проверить код и шаблоны    |
+| `npm run format:check`      | Проверить форматирование   |
+
+## Структура
+
+```text
+public/                       # Статические файлы
+src/
+  app/
+    layout/                   # Общая компоновка
+    shared/
+      components/             # Общие компоненты
+      icons/                  # SVG-иконки
+      services/               # Общие сервисы и их тесты
+      translations/           # Словари и типы переводов
+    app.*                     # Корневая оболочка и конфигурация
+  main.ts / main.server.ts    # Точки входа
+  server.ts                   # Express SSR-сервер
+  styles.scss                 # Общие стили и CSS-токены
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Проектные скиллы
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Инструкции для агента находятся в `.agents/skills/` и разделены по темам. При изменении файлов проекта применяется только скилл, относящийся к затронутой области; для ответов без изменения файлов проектные скиллы не используются.
