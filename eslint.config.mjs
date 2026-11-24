@@ -35,7 +35,6 @@ export default defineConfig(
               position: 'after',
             },
             { pattern: '@angular/**', group: 'external', position: 'before' },
-            { pattern: '{rxjs,rxjs/**}', group: 'external', position: 'before' },
             { pattern: '@features/**', group: 'internal', position: 'before' },
             { pattern: '@layout/**', group: 'internal', position: 'before' },
             { pattern: '@components/**', group: 'internal', position: 'before' },

@@ -1,6 +1,0 @@
-interface:
-  display_name: "Angular: правила проекта"
-  short_description: "46 правил для написания и изменения кода проекта"
-
-policy:
-  allow_implicit_invocation: true

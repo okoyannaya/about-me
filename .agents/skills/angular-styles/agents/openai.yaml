@@ -1,0 +1,3 @@
+interface:
+  display_name: "Стили Angular"
+  short_description: "Правила SCSS, тем и CSS-переменных"
