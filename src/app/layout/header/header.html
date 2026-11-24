@@ -1,4 +1,4 @@
-<nav class="tuffy-bold-font">
+<nav>
   @for (option of options(); track option.fragment ?? option.path) {
     @if (option.fragment; as fragment) {
       <a
@@ -6,11 +6,11 @@
         [class.active]="isActive(option)"
         (click)="scrollToSection($event, fragment)"
       >
-        {{ option.label }}
+        {{ option.label | uppercase }}
       </a>
     } @else {
       <a [routerLink]="option.path" [class.active]="isActive(option)">
-        {{ option.label }}
+        {{ option.label | uppercase }}
       </a>
     }
   }

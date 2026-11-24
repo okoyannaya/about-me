@@ -5,7 +5,7 @@
   gap: 4px;
   border: 1px solid var(--accent-10);
   border-radius: 8px;
-  background: var(--background-10);
+  background: var(--background-20);
 
   &::before {
     grid-area: 1 / 1;
@@ -19,9 +19,6 @@
     z-index: 1;
     position: relative;
     grid-row: 1;
-    &:hover{
-      background-color: var(--primary-20);
-    }
   }
 
   app-icon:nth-child(1) {

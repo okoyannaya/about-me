@@ -1,3 +1,4 @@
+import { UpperCasePipe } from '@angular/common';
 import {
   afterNextRender,
   ChangeDetectionStrategy,
@@ -23,7 +24,7 @@ interface NavigationOption {
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, ThemeToggle, LanguageToggle],
+  imports: [RouterLink, ThemeToggle, LanguageToggle, UpperCasePipe],
   templateUrl: './header.html',
   styleUrl: './header.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -40,11 +41,11 @@ export class Header {
     const t = this._translationService.translations().navigation;
 
     return [
-      { path: '/', fragment: 'about', label: t.about },
-      { path: '/', fragment: 'technologies', label: t.technologies },
-      { path: '/', fragment: 'work', label: t.work },
-      { path: '/portfolio', label: t.portfolio },
-      { path: '/', fragment: 'contact', label: t.contact },
+      { path: '/', fragment: 'about', label: `[ ${t.about} ]` },
+      { path: '/', fragment: 'technologies', label: `[ ${t.technologies} ]` },
+      { path: '/', fragment: 'work', label: `[ ${t.work} ]` },
+      { path: '/portfolio', label: `[ ${t.portfolio} ]` },
+      { path: '/', fragment: 'contact', label: `[ ${t.contact} ]` },
     ];
   });
 

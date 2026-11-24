@@ -4,9 +4,9 @@
   align-items: center;
   padding: 4px;
   gap: 4px;
-  border: 1px solid var(--accent-10);
+  border: 1px solid var(--accent-20);
   border-radius: 8px;
-  background-color: var(--background-10);
+  background-color: var(--background-20);
 
   &::before {
     grid-area: 1 / 1;
@@ -31,6 +31,8 @@
     color: var(--text-100);
     text-align: center;
     cursor: pointer;
+    font-family: var(--font-family-primary);
+    letter-spacing: 0.1em;
 
     &:focus-visible {
       border: 2px solid var(--text-100);
