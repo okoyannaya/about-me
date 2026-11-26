@@ -3,6 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <!-- Apply the SSR theme before the external stylesheet loads. -->
+    <script>
+      const savedTheme = document.cookie
+        .split(';')
+        .map((cookie) => cookie.trim())
+        .find((cookie) => cookie.startsWith('currentTheme='))
+        ?.slice('currentTheme='.length);
+
+      if (savedTheme === 'light' || savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      }
+    </script>
     <style>
       :root {
         color-scheme: light dark;
