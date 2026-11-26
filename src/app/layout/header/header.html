@@ -5,6 +5,7 @@
       [fragment]="option.fragment"
       [class.active]="option.isActive"
       [attr.aria-current]="option.isActive ? (option.fragment ? 'location' : 'page') : null"
+      (click)="trackNavigationClick(option.key)"
     >
       <span>[</span>
       {{ option.label | uppercase }}
