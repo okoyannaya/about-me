@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://lefthook.dev/schema.json
+pre-commit:
+  jobs:
+    - name: formatting
+      glob: '*.{ts,html,scss,css,json,md,mjs}'
+      run: npx prettier --write {staged_files}
+      stage_fixed: true
+
+    - name: linter
+      glob: '*.{ts,html,mjs}'
+      run: npx eslint --fix --max-warnings 0 {staged_files}
+      stage_fixed: true
+
+    - name: typecheck
+      run: npm run typecheck
