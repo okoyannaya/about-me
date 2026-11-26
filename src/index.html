@@ -2,6 +2,20 @@
 <html lang="ru" translate="no">
   <head>
     <meta charset="utf-8" />
+    <!-- Apply the SSR theme before the external stylesheet loads. -->
+    <style>
+      :root {
+        color-scheme: light dark;
+      }
+
+      :root[data-theme='light'] {
+        color-scheme: light;
+      }
+
+      :root[data-theme='dark'] {
+        color-scheme: dark;
+      }
+    </style>
     <title>AboutMe</title>
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
