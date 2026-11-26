@@ -5,8 +5,6 @@ html {
 }
 
 :root {
-  color-scheme: light dark;
-
   --text-0: light-dark(#f2f2f2, #0d0d0d);
   --text-10: light-dark(#e6e6e6, #1a1a1a);
   --text-20: light-dark(#cccccc, #333333);
@@ -71,14 +69,6 @@ html {
   --font-family-accent: 'Bad Script', cursive;
 }
 
-[data-theme='light'] {
-  color-scheme: light;
-}
-
-[data-theme='dark'] {
-  color-scheme: dark;
-}
-
 [data-navigation-section] {
   scroll-margin-top: 80px;
 }
@@ -89,8 +79,8 @@ body {
   color: var(--text-100);
   font-family: var(--font-family-primary);
   transition:
-    background-color .6s ease,
-    color .6s ease;
+    background-color 0.6s ease,
+    color 0.6s ease;
 }
 
 .main {

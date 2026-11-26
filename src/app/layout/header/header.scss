@@ -8,7 +8,7 @@
   min-height: 64px;
   padding: 8px 24px;
   border-bottom: 1px solid var(--primary-30);
-  background-color: var(--background-0);
+  backdrop-filter: blur(8px) brightness(35%);
   font-weight: 500;
   line-height: 1.5;
   letter-spacing: 0.1em;
