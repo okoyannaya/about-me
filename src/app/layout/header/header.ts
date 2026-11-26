@@ -17,6 +17,7 @@ import { debounceTime, fromEvent } from 'rxjs';
 import { LanguageToggle } from '@components/language-toggle/language-toggle';
 import { ThemeToggle } from '@components/theme-toggle/theme-toggle';
 
+import { AnalyticsService } from '@services/analytics.service';
 import { TranslationService } from '@services/translation.service';
 
 const DEFAULT_SECTION = 'about';
@@ -39,6 +40,7 @@ export class Header {
   private readonly _document = inject(DOCUMENT);
   private readonly _location = inject(Location);
   private readonly _router = inject(Router);
+  private readonly _analyticsService = inject(AnalyticsService);
   private readonly _translationService = inject(TranslationService);
 
   private readonly _navigation = this._router.lastSuccessfulNavigation;
@@ -64,11 +66,11 @@ export class Header {
     const activeSection = this._activeSection();
 
     return [
-      { path: '/', fragment: DEFAULT_SECTION, label: t.about },
-      { path: '/', fragment: 'technologies', label: t.technologies },
-      { path: '/', fragment: 'work', label: t.work },
-      { path: '/', fragment: 'contact', label: t.contact },
-      { path: '/portfolio', label: t.portfolio },
+      { path: '/', fragment: DEFAULT_SECTION, label: t.about, key: 'about' },
+      { path: '/', fragment: 'technologies', label: t.technologies, key: 'technologies' },
+      { path: '/', fragment: 'work', label: t.work, key: 'work' },
+      { path: '/', fragment: 'contact', label: t.contact, key: 'contact' },
+      { path: '/portfolio', label: t.portfolio, key: 'portfolio' },
     ].map((option) => ({
       ...option,
       isActive: option.fragment ? option.fragment === activeSection : this._isPortfolio(),
@@ -82,6 +84,10 @@ export class Header {
         .pipe(debounceTime(100), takeUntilDestroyed(this._destroyRef))
         .subscribe(() => this._syncSectionFromScroll());
     });
+  }
+
+  protected trackNavigationClick(key: string): void {
+    this._analyticsService.trackEvent(`navigation_${key}_click`);
   }
 
   private _syncSectionFromScroll(): void {
