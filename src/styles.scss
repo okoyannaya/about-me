@@ -5,6 +5,8 @@ html {
 }
 
 :root {
+  color-scheme: light dark;
+
   --text-0: light-dark(#f2f2f2, #0d0d0d);
   --text-10: light-dark(#e6e6e6, #1a1a1a);
   --text-20: light-dark(#cccccc, #333333);
@@ -67,6 +69,14 @@ html {
 
   --font-family-primary: 'JetBrains Mono', monospace;
   --font-family-accent: 'Bad Script', cursive;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
 }
 
 [data-navigation-section] {
