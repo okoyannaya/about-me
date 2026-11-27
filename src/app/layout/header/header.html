@@ -1,19 +1,45 @@
-<nav>
-  @for (option of options(); track option.fragment ?? option.path) {
-    <a
-      [routerLink]="option.path"
-      [fragment]="option.fragment"
-      [class.active]="option.isActive"
-      [attr.aria-current]="option.isActive ? (option.fragment ? 'location' : 'page') : null"
-      (click)="trackNavigationClick(option.key)"
-    >
-      <span>[</span>
-      {{ option.label | uppercase }}
-      <span>]</span>
-    </a>
-  }
-</nav>
-<div class="controls">
-  <app-theme-toggle />
-  <app-language-toggle />
+<div class="identity-text">
+  <span>Татьяна Ефимова</span>
+  <span>Frontend developer</span>
 </div>
+<div class="navigation-actions">
+  <nav>
+    @for (option of options(); track option.fragment ?? option.path) {
+      <a
+        [routerLink]="option.path"
+        [fragment]="option.fragment"
+        [class.active]="option.isActive"
+        [attr.aria-current]="option.isActive ? (option.fragment ? 'location' : 'page') : null"
+        (click)="trackNavigationClick(option.key)"
+      >
+        <ng-container
+          [ngTemplateOutlet]="bracketLabel"
+          [ngTemplateOutletContext]="{ $implicit: option.label }"
+        />
+      </a>
+    }
+  </nav>
+  <button
+    type="button"
+    aria-controls="header-controls"
+    [attr.aria-expanded]="isControlsOpen()"
+    (click)="toggleControls()"
+  >
+    <ng-container
+      [ngTemplateOutlet]="bracketLabel"
+      [ngTemplateOutletContext]="{ $implicit: controlsLabel() }"
+    />
+  </button>
+</div>
+<div id="header-controls" class="controls-drawer" [attr.inert]="isControlsOpen() ? null : ''">
+  <div class="controls">
+    <app-theme-toggle />
+    <app-language-toggle />
+  </div>
+</div>
+
+<ng-template #bracketLabel let-label>
+  <span>[</span>
+  {{ label | uppercase }}
+  <span>]</span>
+</ng-template>

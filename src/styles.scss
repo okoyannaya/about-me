@@ -80,7 +80,7 @@ html {
 }
 
 [data-navigation-section] {
-  scroll-margin-top: 80px;
+  scroll-margin-top: var(--header-height, 80px);
 }
 
 body {
@@ -94,7 +94,13 @@ body {
 }
 
 .main {
-  padding-top: 80px;
+  padding-top: var(--header-height, 80px);
+}
+
+@media (max-width: 576px) {
+  :root {
+    --header-height: 160px;
+  }
 }
 
 .no-select {

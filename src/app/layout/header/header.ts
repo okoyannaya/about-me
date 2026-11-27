@@ -1,4 +1,4 @@
-import { Location, UpperCasePipe } from '@angular/common';
+import { Location, NgTemplateOutlet, UpperCasePipe, ViewportScroller } from '@angular/common';
 import {
   afterNextRender,
   ChangeDetectionStrategy,
@@ -6,13 +6,14 @@ import {
   computed,
   DestroyRef,
   DOCUMENT,
+  ElementRef,
   inject,
   signal,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { isActive, type IsActiveMatchOptions, Router, RouterLink } from '@angular/router';
 
-import { debounceTime, fromEvent } from 'rxjs';
+import { debounceTime, fromEvent, tap } from 'rxjs';
 
 import { LanguageToggle } from '@components/language-toggle/language-toggle';
 import { ThemeToggle } from '@components/theme-toggle/theme-toggle';
@@ -30,15 +31,20 @@ const PAGE_MATCH_OPTIONS: IsActiveMatchOptions = {
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, ThemeToggle, LanguageToggle, UpperCasePipe],
+  imports: [RouterLink, ThemeToggle, LanguageToggle, NgTemplateOutlet, UpperCasePipe],
   templateUrl: './header.html',
   styleUrl: './header.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class.is-open]': 'isControlsOpen()',
+  },
 })
 export class Header {
   private readonly _destroyRef = inject(DestroyRef);
   private readonly _document = inject(DOCUMENT);
+  private readonly _element = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly _location = inject(Location);
+  private readonly _viewportScroller = inject(ViewportScroller);
   private readonly _router = inject(Router);
   private readonly _analyticsService = inject(AnalyticsService);
   private readonly _translationService = inject(TranslationService);
@@ -46,6 +52,8 @@ export class Header {
   private readonly _navigation = this._router.lastSuccessfulNavigation;
   private readonly _isHome = isActive('/', this._router, PAGE_MATCH_OPTIONS);
   private readonly _isPortfolio = isActive('/portfolio', this._router, PAGE_MATCH_OPTIONS);
+  private _headerHeight = 80;
+  protected readonly isControlsOpen = signal(false);
   private readonly _scrolledSection = signal<{ navigationId: number; fragment: string } | null>(
     null,
   );
@@ -76,18 +84,44 @@ export class Header {
       isActive: option.fragment ? option.fragment === activeSection : this._isPortfolio(),
     }));
   });
+  protected readonly controlsLabel = computed(
+    () => this._translationService.translations().navigation.controls,
+  );
 
   public constructor() {
+    this._viewportScroller.setOffset(() => [0, this._headerHeight]);
+
     afterNextRender(() => {
+      const observer = new ResizeObserver(() => {
+        if (!this.isControlsOpen()) {
+          const height = this._element.nativeElement.getBoundingClientRect().height;
+          this._headerHeight = height;
+          this._document.documentElement.style.setProperty('--header-height', `${height}px`);
+        }
+      });
+      observer.observe(this._element.nativeElement);
+      this._destroyRef.onDestroy(() => {
+        observer.disconnect();
+        this._document.documentElement.style.removeProperty('--header-height');
+      });
+
       // Let anchor scrolling settle before updating the URL from the viewport.
       fromEvent(this._document, 'scroll')
-        .pipe(debounceTime(100), takeUntilDestroyed(this._destroyRef))
+        .pipe(
+          tap(() => this.isControlsOpen.set(false)),
+          debounceTime(100),
+          takeUntilDestroyed(this._destroyRef),
+        )
         .subscribe(() => this._syncSectionFromScroll());
     });
   }
 
   protected trackNavigationClick(key: string): void {
     this._analyticsService.trackEvent(`navigation_${key}_click`);
+  }
+
+  protected toggleControls(): void {
+    this.isControlsOpen.update((isOpen) => !isOpen);
   }
 
   private _syncSectionFromScroll(): void {
