@@ -35,13 +35,30 @@ app.use(
 /**
  * Handle all other requests by rendering the Angular application.
  */
-app.use((req, res, next) => {
-  angularApp
-    .handle(req)
-    .then((response) => (response ? writeResponseToNodeResponse(response, res) : next()))
-    .catch(next);
-});
+app.use(async (req, res, next) => {
+  try {
+    const response = await angularApp.handle(req);
+    if (!response) return next();
 
+    const theme = /(?:^|;\s*)currentTheme=(light|dark)(?:;|$)/.exec(req.headers.cookie ?? '')?.[1];
+    if (!theme) return writeResponseToNodeResponse(response, res);
+
+    const html = (await response.text()).replace(
+      /<html\b([^>]*)>/i,
+      `<html$1 data-theme="${theme}">`,
+    );
+
+    const headers = new Headers(response.headers);
+    headers.delete('content-length');
+
+    return writeResponseToNodeResponse(
+      new Response(html, { status: response.status, headers }),
+      res,
+    );
+  } catch (error) {
+    next(error);
+  }
+});
 /**
  * Start the server if this module is the main entry point, or it is ran via PM2.
  * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.

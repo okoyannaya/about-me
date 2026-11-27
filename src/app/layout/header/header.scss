@@ -2,9 +2,10 @@
 
 :host {
   box-sizing: border-box;
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  column-gap: 20px;
   align-items: center;
-  justify-content: space-between;
   min-height: 64px;
   padding: 8px 24px;
   border-bottom: 1px solid var(--primary-30);
@@ -15,12 +16,14 @@
   letter-spacing: 0.1em;
 }
 
+.navigation-actions,
 nav {
   display: flex;
   gap: 25px;
 }
 
-a {
+a,
+button {
   display: inline-flex;
   align-items: center;
   padding-inline: 4px;
@@ -33,30 +36,88 @@ a {
     display: inline-block;
     transition: transform 0.2s ease;
   }
+}
 
-  &:hover span:first-child {
-    transform: translateX(-4px);
-  }
+@media (hover: hover) and (pointer: fine) {
+  a,
+  button {
+    &:hover {
+      color: var(--text-90);
+    }
 
-  &:hover span:last-child {
-    transform: translateX(4px);
-  }
+    &:hover span:first-child {
+      transform: translateX(-4px);
+    }
 
-  &:hover,
-  &.active {
-    color: var(--text-90);
+    &:hover span:last-child {
+      transform: translateX(4px);
+    }
   }
+}
+
+nav a.active {
+  color: var(--text-90);
+}
+
+button {
+  border: 0;
+  background: transparent;
+  font: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+.identity-text {
+  display: flex;
+  flex-direction: column;
+  color: var(--text-90);
+  line-height: 1.2;
+  white-space: nowrap;
+
+  span:last-child {
+    color: var(--primary-50);
+    font-size: 0.8em;
+  }
+}
+
+.controls-drawer {
+  display: grid;
+  grid-template-rows: 0fr;
+  grid-column: 1 / -1;
+  transition: grid-template-rows 300ms ease;
 }
 
 .controls {
   display: flex;
+  justify-content: flex-end;
+  min-height: 0;
+  overflow: hidden;
   gap: 15px;
+  opacity: 0;
+  transition:
+    padding 300ms ease,
+    opacity 200ms ease;
+}
+
+:host(.is-open) .controls {
+  padding-block: 8px;
+  opacity: 1;
+}
+
+:host(.is-open) .controls-drawer {
+  grid-template-rows: 1fr;
 }
 
 @include breakpoint(tablet) {
   :host {
     font-size: 12px;
   }
+  .navigation-actions,
   nav {
     gap: 15px;
   }
@@ -64,15 +125,17 @@ a {
 
 @include breakpoint(mobile) {
   :host {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  .navigation-actions {
     display: grid;
     grid-template-columns: minmax(0, 1fr) max-content;
     column-gap: 12px;
     row-gap: 10px;
-    align-items: center;
-    justify-content: stretch;
-    min-height: auto;
-    padding: 12px 16px;
-    font-size: 14px;
+    margin-top: 16px;
   }
 
   nav {
@@ -88,7 +151,22 @@ a {
     justify-self: end;
   }
 
-  .controls {
+  .navigation-actions > button {
     justify-self: end;
+  }
+
+  .identity-text {
+    white-space: normal;
+  }
+
+  .controls {
+    flex-wrap: wrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .controls-drawer,
+  .controls {
+    transition: none;
   }
 }
